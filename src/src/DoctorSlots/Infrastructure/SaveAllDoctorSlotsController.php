@@ -23,11 +23,11 @@ final class SaveAllDoctorSlotsController
         $doctors = $doctorsUserCase();
 
         foreach ($doctors->all() as $doctor) {
-            $lessonsResponse = Http::withBasicAuth(config("app.basic_auth_username"), config("app.basic_auth_password"))
+            $slotsResponse = Http::withBasicAuth(config("app.basic_auth_username"), config("app.basic_auth_password"))
                 ->get(config('app.api_url_base') . '/doctors/' . $doctor->id()->value() . '/slots');
 
-            if($lessonsResponse->status() !== 500) {
-                $slots = $lessonsResponse->json();
+            if($slotsResponse->status() !== 500) {
+                $slots = $slotsResponse->json();
 
                 foreach ($slots as $slot) {
                     $saveAllDoctorsSlot = new SaveAllSlots($this->doctorSlotsRepository);
