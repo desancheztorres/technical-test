@@ -1,0 +1,275 @@
+{
+  "info": {
+    "name": "Doctors",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Doctors",
+      "item": [
+        {
+          "name": "API",
+          "item": [
+            {
+              "name": "Index",
+              "request": {
+                "method": "GET",
+                "url": {
+                  "raw": "https://cryptic-cove-05648.herokuapp.com/api/doctors",
+                  "query": null,
+                  "protocol": "https",
+                  "host": [
+                    "cryptic-cove-05648",
+                    "herokuapp",
+                    "com"
+                  ],
+                  "port": null,
+                  "path": [
+                    "api",
+                    "doctors"
+                  ]
+                },
+                "description": "",
+                "header": [],
+                "body": null,
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "docplanner",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "docplanner",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "protocolProfileBehavior": {
+                "followRedirects": false,
+                "followOriginalHttpMethod": false,
+                "followAuthorizationHeader": false
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": null,
+          "response": []
+        },
+        {
+          "name": "Index",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/doctors",
+              "query": null,
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "doctors"
+              ]
+            },
+            "description": "",
+            "header": [],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        },
+        {
+          "name": "Save all Doctors",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "http://localhost:8081/api/doctors/all",
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "disabled": true,
+                  "description": null
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true,
+                  "description": null
+                }
+              ],
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "doctors",
+                "all"
+              ]
+            },
+            "description": "",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": null,
+      "response": []
+    },
+    {
+      "name": "DoctorSlots",
+      "item": [
+        {
+          "name": "API",
+          "item": [
+            {
+              "name": "Index",
+              "request": {
+                "method": "GET",
+                "url": {
+                  "raw": "https://cryptic-cove-05648.herokuapp.com/api/doctors/11/slots",
+                  "query": [
+                    {
+                      "key": "doctor",
+                      "value": "2",
+                      "disabled": true,
+                      "description": null
+                    }
+                  ],
+                  "protocol": "https",
+                  "host": [
+                    "cryptic-cove-05648",
+                    "herokuapp",
+                    "com"
+                  ],
+                  "port": null,
+                  "path": [
+                    "api",
+                    "doctors",
+                    "11",
+                    "slots"
+                  ]
+                },
+                "description": "",
+                "header": [],
+                "body": null,
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "docplanner",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "docplanner",
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "protocolProfileBehavior": {
+                "followRedirects": false,
+                "followOriginalHttpMethod": false,
+                "followAuthorizationHeader": false
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": null,
+          "response": []
+        },
+        {
+          "name": "Index",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/slots?sort_type=date_and_time&date_from=2020-02-01&date_to=2020-02-02",
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true,
+                  "description": null
+                },
+                {
+                  "key": "sort_type",
+                  "value": "date_and_time",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "date_from",
+                  "value": "2020-02-01",
+                  "disabled": false,
+                  "description": null
+                },
+                {
+                  "key": "date_to",
+                  "value": "2020-02-02",
+                  "disabled": false,
+                  "description": null
+                }
+              ],
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "api",
+                "slots"
+              ]
+            },
+            "description": "",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false,
+                "description": null
+              }
+            ],
+            "body": null,
+            "auth": null
+          },
+          "protocolProfileBehavior": {
+            "followRedirects": false,
+            "followOriginalHttpMethod": false,
+            "followAuthorizationHeader": false
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": null,
+      "response": []
+    }
+  ]
+}
