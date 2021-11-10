@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Src\DoctorSlots\Infrastructure;
 
 use Illuminate\Http\Request;
-use Src\Doctor\DoctorSlots\Exceptions\SortTypeNotFound;
+use Src\DoctorSlots\Domain\Exceptions\SortTypeNotFound;
 use Src\DoctorSlots\Application\sort\{SortByDateAndTime, SortBySlotDuration};
 use Src\DoctorSlots\Infrastructure\Repositories\EloquentSlotSorter;
 
@@ -24,7 +24,7 @@ final class GetAllDoctorSlotsController
             throw new SortTypeNotFound();
         }
 
-        $newSlotOrdering = new $sort_types[$request->sort_type]($this->repository);
+        $newSlotOrdering = new $sort_types[$request->sort_type]($this->repository, $request->date_from, $request->date_to);
 
         return $newSlotOrdering();
     }

@@ -13,7 +13,6 @@ use Src\Doctor\Domain\Doctors;
 
 final class EloquentDoctorRepository implements DoctorRepository
 {
-
     public function getAll(): Doctors
     {
         $doctors = DB::table('doctors')
@@ -66,6 +65,8 @@ final class EloquentDoctorRepository implements DoctorRepository
         $doctor = DB::table('doctors')
             ->where('name', $name->value())
             ->first();
+
+        if (is_null($doctor)) return null;
 
         return new Doctor(
             new DoctorId($doctor->id),

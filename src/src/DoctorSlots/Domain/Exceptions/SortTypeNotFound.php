@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Src\Doctor\DoctorSlots\Exceptions;
+namespace Src\DoctorSlots\Domain\Exceptions;
 
 use RuntimeException;
 use Throwable;

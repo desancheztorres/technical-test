@@ -6,6 +6,6 @@ namespace Src\DoctorSlots\Domain\Contracts;
 
 interface SlotsSorter
 {
-    public function sortingBySlotDuration();
-    public function sortingBySlotDateAndTime();
+    public function sortingBySlotDuration($date_from, $date_to);
+    public function sortingBySlotDateAndTime($date_from, $date_to);
 }

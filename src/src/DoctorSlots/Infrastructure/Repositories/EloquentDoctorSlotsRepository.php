@@ -25,9 +25,9 @@ final class EloquentDoctorSlotsRepository implements DoctorSlotsRepository
 
         foreach ($slots as $slot) {
             array_push($array, new DoctorSlot(
-                new DoctorId($slot->doctor_id),
-                new DoctorSlotStart(\Illuminate\Support\Carbon::make($slot->start)),
-                new DoctorSlotEnd(\Illuminate\Support\Carbon::make($slot->end)),
+                doctorId: new DoctorId($slot->doctor_id),
+                start: new DoctorSlotStart(\Illuminate\Support\Carbon::make($slot->start)),
+                end: new DoctorSlotEnd(\Illuminate\Support\Carbon::make($slot->end)),
             ));
         }
 
@@ -42,5 +42,21 @@ final class EloquentDoctorSlotsRepository implements DoctorSlotsRepository
                 'end' => Carbon::make($slot['end']),
                 'doctor_id' => $doctorId,
             ], ['start', 'doctor_id']);
+    }
+
+    public function findByCriteria(DoctorSlotStart $start, DoctorId $doctorId): ?DoctorSlot
+    {
+        $slot = DB::table('slots')
+            ->where('start', $start->value())
+            ->where('doctor_id', $doctorId->value())
+            ->first();
+
+        if (is_null($slot)) return null;
+
+        return new DoctorSlot(
+            doctorId: new DoctorId($slot->doctor_id),
+            start: new DoctorSlotStart($slot->start),
+            end: new DoctorSlotEnd($slot->end)
+        );
     }
 }

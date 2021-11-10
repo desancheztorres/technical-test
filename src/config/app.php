@@ -123,6 +123,11 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'api_url_base' => env('API_URL_BASE'),
+    'basic_auth_username' => env('BASIC_AUTH_USERNAME'),
+    'basic_auth_password' => env('BASIC_AUTH_PASSWORD'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

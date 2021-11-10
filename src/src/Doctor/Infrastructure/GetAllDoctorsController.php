@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Src\Doctor\Infrastructure;
 
-use Src\Doctor\Application\GetAllDoctors;
+use Src\Doctor\Application\get\GetAllDoctors;
 use Src\Doctor\Infrastructure\Repositories\EloquentDoctorRepository;
 
 final class GetAllDoctorsController

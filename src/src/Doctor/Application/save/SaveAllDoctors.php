@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Src\Doctor\Application;
+namespace Src\Doctor\Application\save;
 
 use Src\Doctor\Domain\Contracts\DoctorRepository;
 

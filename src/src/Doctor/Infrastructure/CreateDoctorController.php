@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Src\Doctor\Infrastructure;
 
 use App\Http\Requests\Doctors\StoreDoctorRequest;
-use Src\Doctor\Application\CreateDoctor;
-use Src\Doctor\Application\GetDoctorByCriteria;
+use Src\Doctor\Application\create\CreateDoctor;
+use Src\Doctor\Application\get\GetDoctorByCriteria;
 use Src\Doctor\Domain\DoctorId;
 use Src\Doctor\Domain\DoctorName;
 use Src\Doctor\Infrastructure\Repositories\EloquentDoctorRepository;

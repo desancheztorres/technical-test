@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Src\Doctor\Application;
+namespace Src\Doctor\Application\create;
 
 use Src\Doctor\Domain\Contracts\DoctorRepository;
 use Src\Doctor\Domain\Doctor;
-use Src\Doctor\Domain\DoctorAlreadyExists;
+use Src\Doctor\Domain\Exceptions\DoctorAlreadyExists;
 use Src\Doctor\Domain\DoctorId;
 use Src\Doctor\Domain\DoctorName;
 

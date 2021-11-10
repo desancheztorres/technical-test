@@ -15,13 +15,17 @@ use Src\DoctorSlots\Domain\DoctorSlotStart;
 
 final class EloquentSlotSorter implements SlotsSorter
 {
-    public function sortingBySlotDuration()
+    public function sortingBySlotDuration($date_from, $date_to)
     {
-        $slots = DB::select("
-            SELECT slots.start, slots.end, slots.doctor_id, timediff(slots.end, slots.start) as time_diff
-            FROM slots
+        $from = Carbon::make($date_from)->toDateString();
+        $to = Carbon::make($date_to)->toDateString();
+
+        $slots = DB::select('
+            SELECT s.start, s.end, s.doctor_id, timediff(s.end, s.start) as time_diff, CAST(s.start as DATE) as d
+            FROM slots s
+            WHERE cast(s.start as date) BETWEEN ? AND ?
             ORDER BY time_diff DESC
-        ");
+        ', [$from, $to]);
 
         $doctorSlots = new DoctorSlots();
 
@@ -36,13 +40,17 @@ final class EloquentSlotSorter implements SlotsSorter
         return $doctorSlots;
     }
 
-    public function sortingBySlotDateAndTime()
+    public function sortingBySlotDateAndTime($date_from, $date_to)
     {
-        $slots = DB::select("
-            SELECT *
-            FROM slots
-            ORDER BY slots.start
-        ");
+        $from = Carbon::make($date_from)->toDateString();
+        $to = Carbon::make($date_to)->toDateString();
+
+        $slots = DB::select('
+            SELECT s.*
+            FROM slots s
+            WHERE cast(s.start as date) BETWEEN ? AND ?
+            ORDER BY s.start
+        ', [$from, $to]);
 
         $doctorSlots = new DoctorSlots();
 
