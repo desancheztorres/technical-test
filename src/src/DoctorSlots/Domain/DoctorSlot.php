@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Src\DoctorSlots\Domain;
 
 use Src\Doctor\Domain\DoctorId;
-use Src\Shared\Domain\AggregateRoot;
 
-final class DoctorSlot extends AggregateRoot
+final class DoctorSlot
 {
     public function __construct(
         private DoctorId $doctorId,

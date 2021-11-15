@@ -10,38 +10,38 @@ use Src\Doctor\Domain\DoctorId;
 use Src\DoctorSlots\Domain\Contracts\DoctorSlotsRepository;
 use Src\DoctorSlots\Domain\DoctorSlot;
 use Src\DoctorSlots\Domain\DoctorSlotEnd;
+use Src\DoctorSlots\Domain\DoctorSlots;
 use Src\DoctorSlots\Domain\DoctorSlotStart;
 
 final class EloquentDoctorSlotsRepository implements DoctorSlotsRepository
 {
-
-    public function getAll()
+    public function getAll(): ?DoctorSlots
     {
         $slots = DB::table('slots')
             ->get()
             ->toArray();
 
-        $array = array();
+        $doctorSlots = new DoctorSlots();
 
         foreach ($slots as $slot) {
-            array_push($array, new DoctorSlot(
+            $doctorSlots->add(new DoctorSlot(
                 doctorId: new DoctorId($slot->doctor_id),
                 start: new DoctorSlotStart(\Illuminate\Support\Carbon::make($slot->start)),
                 end: new DoctorSlotEnd(\Illuminate\Support\Carbon::make($slot->end)),
             ));
         }
 
-        return $array;
+        return $doctorSlots;
     }
 
-    public function save($doctorId, $slot)
+    public function save(DoctorId $doctorId, $slot)
     {
         DB::table('slots')
-            ->upsert([
+            ->insert([
                 'start' => Carbon::make($slot['start']),
                 'end' => Carbon::make($slot['end']),
-                'doctor_id' => $doctorId,
-            ], ['start', 'doctor_id']);
+                'doctor_id' => $doctorId->value(),
+            ]);
     }
 
     public function findByCriteria(DoctorSlotStart $start, DoctorId $doctorId): ?DoctorSlot
@@ -54,9 +54,9 @@ final class EloquentDoctorSlotsRepository implements DoctorSlotsRepository
         if (is_null($slot)) return null;
 
         return new DoctorSlot(
-            doctorId: new DoctorId($slot->doctor_id),
-            start: new DoctorSlotStart($slot->start),
-            end: new DoctorSlotEnd($slot->end)
+            doctorId: new DoctorId((int) $slot->doctor_id),
+            start: new DoctorSlotStart(Carbon::make($slot->start)->toDateTime()),
+            end: new DoctorSlotEnd(Carbon::make($slot->end)->toDateTime())
         );
     }
 }

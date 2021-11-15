@@ -12,7 +12,7 @@ use Src\Doctor\Domain\Doctors;
 interface DoctorRepository
 {
     public function getAll(): Doctors;
-    public function saveAll(array $doctors): void;
+    public function saveAll(Doctors $doctors): void;
     public function save(Doctor $doctor): void;
     public function search(DoctorId $id): ?Doctor;
     public function findByCriteria(DoctorName $name): ?Doctor;

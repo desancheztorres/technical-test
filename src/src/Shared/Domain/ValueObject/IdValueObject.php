@@ -20,7 +20,7 @@ abstract class IdValueObject
     {
         $options = array(
             'options' => array(
-                'min_range' => 0,
+                'min_range' => 1,
             )
         );
 

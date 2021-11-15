@@ -15,6 +15,6 @@ final class GetAllDoctorSlotsController
     {
         $slots = new DoctorSlotCollection($this->controller->__invoke($request)->all());
 
-        return response($slots, 200);
+        return response($slots);
     }
 }

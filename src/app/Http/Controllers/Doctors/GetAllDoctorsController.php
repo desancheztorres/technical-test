@@ -15,6 +15,6 @@ final class GetAllDoctorsController
     {
         $doctors = new DoctorCollection($this->controller->__invoke()->all());
 
-        return response($doctors, 200);
+        return response($doctors);
     }
 }

@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Src\DoctorSlots\Domain\Enums;
+namespace Src\Shared\Domain\Enums;
 
-use Src\DoctorSlots\Application\sort\SortByDateAndTime;
-use Src\DoctorSlots\Application\sort\SortBySlotDuration;
+use Src\DoctorSlots\Application\sort\{SortByDateAndTime, SortBySlotDuration};
 
 abstract class SortTypes
 {

@@ -15,7 +15,7 @@ use Src\DoctorSlots\Domain\DoctorSlotStart;
 
 final class EloquentSlotSorter implements SlotsSorter
 {
-    public function sortingBySlotDuration($date_from, $date_to)
+    public function sortingBySlotDuration(string $date_from, string $date_to): ?DoctorSlots
     {
         $from = Carbon::make($date_from)->toDateString();
         $to = Carbon::make($date_to)->toDateString();
@@ -40,7 +40,7 @@ final class EloquentSlotSorter implements SlotsSorter
         return $doctorSlots;
     }
 
-    public function sortingBySlotDateAndTime($date_from, $date_to)
+    public function sortingBySlotDateAndTime(string $date_from, string $date_to): ?DoctorSlots
     {
         $from = Carbon::make($date_from)->toDateString();
         $to = Carbon::make($date_to)->toDateString();

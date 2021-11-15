@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Src\Doctor\Infrastructure;
 
 use App\Http\Requests\Doctors\StoreDoctorRequest;
-use Src\Doctor\Application\create\CreateDoctor;
+use Src\Doctor\Application\create\DoctorCreator;
 use Src\Doctor\Application\get\GetDoctorByCriteria;
-use Src\Doctor\Domain\DoctorId;
-use Src\Doctor\Domain\DoctorName;
 use Src\Doctor\Infrastructure\Repositories\EloquentDoctorRepository;
 
 final class CreateDoctorController
@@ -20,8 +18,8 @@ final class CreateDoctorController
         $doctorId = (int) $request->id;
         $doctorName = $request->name;
 
-        $createDoctorUseCase = new CreateDoctor($this->repository);
-        $createDoctorUseCase(id: new DoctorId($doctorId), name: new DoctorName($doctorName));
+        $createDoctorUseCase = new DoctorCreator($this->repository);
+        $createDoctorUseCase(doctorId: $doctorId, doctorName: $doctorName);
 
         $getDoctorUseCase = new GetDoctorByCriteria($this->repository);
 

@@ -3,6 +3,8 @@
 namespace App\Http\Requests\DoctorSlots;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Src\Shared\Domain\Enums\SortTypes;
 
 class GetDoctorSlotsRequest extends FormRequest
 {
@@ -24,7 +26,7 @@ class GetDoctorSlotsRequest extends FormRequest
     public function rules()
     {
         return [
-            'sort_type' => 'required',
+            'sort_type' => ['required', Rule::in(array_keys(SortTypes::SORT_TYPES))],
             'date_from' => 'required|date',
             'date_to' => 'required|date',
         ];

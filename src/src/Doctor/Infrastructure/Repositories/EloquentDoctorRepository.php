@@ -23,7 +23,7 @@ final class EloquentDoctorRepository implements DoctorRepository
 
         foreach ($doctors as $doctor) {
             $doctorList->add(new Doctor(
-                new DoctorId($doctor->id),
+                new DoctorId((int) $doctor->id),
                 new DoctorName($doctor->name),
             ));
         }
@@ -32,10 +32,15 @@ final class EloquentDoctorRepository implements DoctorRepository
 
     }
 
-    public function saveAll($doctors): void
+    public function saveAll(Doctors $doctors): void
     {
-        DB::table('doctors')
-            ->upsert($doctors, ['id', 'name']);
+        foreach ($doctors->all() as $doctor) {
+            DB::table('doctors')
+                ->insertOrIgnore([
+                    'id' => $doctor->id()->value(),
+                    'name' => $doctor->name()->value(),
+                ]);
+        }
     }
 
     public function save(Doctor $doctor): void
@@ -55,7 +60,7 @@ final class EloquentDoctorRepository implements DoctorRepository
         if (is_null($doctor)) return null;
 
         return new Doctor(
-            new DoctorId($doctor->id),
+            new DoctorId((int) $doctor->id),
             new DoctorName($doctor->name),
         );
     }
@@ -69,7 +74,7 @@ final class EloquentDoctorRepository implements DoctorRepository
         if (is_null($doctor)) return null;
 
         return new Doctor(
-            new DoctorId($doctor->id),
+            new DoctorId((int) $doctor->id),
             new DoctorName($doctor->name)
         );
     }

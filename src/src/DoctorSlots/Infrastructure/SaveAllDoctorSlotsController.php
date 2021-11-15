@@ -31,7 +31,7 @@ final class SaveAllDoctorSlotsController
 
                 foreach ($slots as $slot) {
                     $saveAllDoctorsSlot = new SaveAllSlots($this->doctorSlotsRepository);
-                    $saveAllDoctorsSlot(doctorId: $doctor->id()->value(), slot: $slot);
+                    $saveAllDoctorsSlot(doctorId: $doctor->id(), slot: $slot);
                 }
             }
         }
